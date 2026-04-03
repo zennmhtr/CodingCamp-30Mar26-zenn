@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Expense &amp; Budget Visualizer</title>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <h1>Expense &amp; Budget Visualizer</h1>
+    <button id="theme-toggle" type="button">Toggle Dark/Light</button>
+  </header>
+
+  <!-- Storage Warning Banner (hidden by default) -->
+  <div id="storage-warning" hidden>
+    Penyimpanan lokal tidak didukung di browser ini. Data tidak akan tersimpan.
+  </div>
+
+  <main>
+    <!-- Total Balance -->
+    <section id="balance-section" class="card">
+      <h2>Saldo Total</h2>
+      <p id="total-balance">Rp 0</p>
+    </section>
+
+    <!-- Transaction Form -->
+    <section id="form-section" class="card">
+      <h2>Tambah Transaksi</h2>
+      <form id="transaction-form">
+        <div>
+          <label for="item-name">Nama Item</label>
+          <input type="text" id="item-name" name="item-name" placeholder="Nama pengeluaran" />
+        </div>
+        <div>
+          <label for="item-amount">Jumlah (Rp)</label>
+          <input type="number" id="item-amount" name="item-amount" placeholder="0" min="0" step="any" />
+        </div>
+        <div>
+          <label for="item-category">Kategori</label>
+          <select id="item-category" name="item-category">
+            <option value="">-- Pilih Kategori --</option>
+            <option value="Food">Food</option>
+            <option value="Transport">Transport</option>
+            <option value="Fun">Fun</option>
+          </select>
+        </div>
+        <button type="submit">Tambah</button>
+        <div id="form-errors" role="alert" aria-live="polite"></div>
+      </form>
+    </section>
+
+    <!-- Pie Chart -->
+    <section id="chart-section" class="card">
+      <h2>Distribusi Pengeluaran</h2>
+      <canvas id="expense-chart"></canvas>
+    </section>
+
+    <!-- Transaction List + Sort -->
+    <section id="list-section" class="card">
+      <h2>Daftar Transaksi</h2>
+      <div id="sort-section">
+        <label for="sort-select">Urutkan:</label>
+        <select id="sort-select">
+          <option value="default">Default</option>
+          <option value="amount-asc">Jumlah: Terkecil</option>
+          <option value="amount-desc">Jumlah: Terbesar</option>
+          <option value="category-az">Kategori: A-Z</option>
+        </select>
+      </div>
+      <ul id="transaction-list"></ul>
+    </section>
+  </main>
+
+  <script src="js/script.js"></script>
+</body>
+</html>
